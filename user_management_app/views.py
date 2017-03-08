@@ -9,8 +9,8 @@ from rest_framework.views import APIView
 
 from user_management_app import utils
 from user_management_app.mixins import UserMixin
-from user_management_app.models import User, AuthDetails
-from user_management_app.serializers import LoginSerializer, AuthDetailsSerializer
+from user_management_app.models import User
+from user_management_app.serializers import LoginSerializer, TokenSerializer
 
 
 class UserAPI(UserMixin, viewsets.ModelViewSet):
@@ -37,11 +37,8 @@ class Login(APIView):
             return response
 
         token, created = Token.objects.get_or_create(user=user)
-        auth_details = AuthDetails()
-        auth_details.key = token.key
-        auth_details.id = user.id
 
-        auth_details_serializer = AuthDetailsSerializer(auth_details)
+        auth_details_serializer = TokenSerializer(token)
         return Response(auth_details_serializer.data, status=status.HTTP_200_OK)
 
 

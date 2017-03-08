@@ -59,7 +59,3 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def get_short_name(self):
         return self.first_name
-
-
-class AuthDetails(Token):
-    id = models.IntegerField(_('age'))

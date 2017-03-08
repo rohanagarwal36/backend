@@ -1,6 +1,7 @@
 from rest_framework import serializers
+from rest_framework.authtoken.models import Token
 
-from user_management_app.models import User, AuthDetails
+from user_management_app.models import User
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -18,7 +19,7 @@ class LoginSerializer(serializers.ModelSerializer):
         fields = ('email', 'password')
 
 
-class AuthDetailsSerializer(serializers.ModelSerializer):
+class TokenSerializer(serializers.ModelSerializer):
     class Meta:
-        model = AuthDetails
-        fields = ('key', 'id')
+        model = Token
+        fields = ('key', 'user')
