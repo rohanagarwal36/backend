@@ -47,14 +47,14 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['first name', 'last name', 'age']
+    REQUIRED_FIELDS = ['first_name', 'last_name', 'age']
 
     class Meta:
         verbose_name = _('user')
         verbose_name_plural = _('users')
 
     def get_full_name(self):
-        full_name = '%s %s' % (self.first_name, self.last_name)
+        full_name = '{} {}'.format(self.first_name, self.last_name)
         return full_name.strip()
 
     def get_short_name(self):

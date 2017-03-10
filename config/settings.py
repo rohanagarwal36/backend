@@ -74,20 +74,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-# Database
-# https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'user_management',
-        'USER': 'user_management',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',
-        'PORT': '',
-    }
-}
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
@@ -118,3 +104,8 @@ REST_FRAMEWORK = {
 AUTH_USER_MODEL = 'user_management_app.User'
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+try:
+    from local_settings import *
+except ImportError:
+    pass
